@@ -1,9 +1,6 @@
 import argparse
 import os
-import random
 from datetime import datetime
-
-import numpy as np
 
 from hy.Estimator import ScoreOrderFilter
 from hy.PipelineBuilder import PipelineBuilder
@@ -13,7 +10,6 @@ from configs.params import MODEL_PARAMS
 from hy.data_loader import load_normalized_data, load_sample_info
 from hy.data_loader import load_separate_cohorts
 from hy.evaluate import calculate_thresholds, generate_report, save_prediction, save_report
-from hy.model import run_pipeline
 from hy.model import save_model, train_pipeline
 
 
@@ -28,7 +24,6 @@ def get_location(location):
         return os.path.join(args.working_dir, "results/4_Classification")
     else:
         return os.path.join(args.working_dir, "results/")
-
 
 
 def main(args):
@@ -49,11 +44,11 @@ def main(args):
     y_train = sample_info.loc[discovery.index]['target']
 
     param_grid = {
-        'n_pcas': range(20, 80, 10),
+        'n_pcas': range(10, 60, 10),
     }
     print(f"Searching for best params in {len(param_grid)} dim combinations")
     best_auc = 0
-    best_param = best_cv_result = best_model = None
+    best_param = best_cv_result = best_model = best_fold = None
     model_params = MODEL_PARAMS.copy()
     for current_param in ParameterGrid(param_grid):
         model_params.update(current_param)
@@ -74,11 +69,12 @@ def main(args):
         )
 
         # 训练并保存模型
-        model, train_cv_oof_result = train_pipeline(normal_pipeline, X_train, y_train, model_params=model_params)
-        report = generate_report({'TRAIN_CV':train_cv_oof_result}, sample_info, [])
+        model, train_cv_oof_result, fold_pred = train_pipeline(normal_pipeline, X_train, y_train,
+                                                               model_params=model_params)
+        report = generate_report({'TRAIN_CV': train_cv_oof_result}, sample_info, [])
         print(f'{current_param},{report[0]["AUC"]}')
         if report[0]['AUC'] > best_auc:
-            best_auc, best_model, best_param, best_cv_result = report[0]['AUC'], model, current_param, train_cv_oof_result
+            best_auc, best_model, best_param, best_cv_result, best_fold = report[0]['AUC'], model, current_param, train_cv_oof_result, fold_pred
 
     print(f"find best params {best_param}, AUC: {best_auc}")
     cutoffs = calculate_thresholds(y_train, best_cv_result)
@@ -94,6 +90,8 @@ def main(args):
     report = generate_report({'train_cv': best_cv_result}, sample_info, cutoffs)
     save_report(report, result_location + f"/{args.exp_name}.train_cv.report.csv")
     save_prediction({'TRAIN_CV': best_cv_result}, result_location + f"/{args.exp_name}_prediction.csv")
+    save_prediction(best_fold, result_location + f"/{args.exp_name}_fold_prediction.csv")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

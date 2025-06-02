@@ -30,8 +30,9 @@ def train_pipeline(pipeline, X, y: pd.Series, cv_splits=5, model_params=None):
     else:
         pipe = pipeline
 
-    pipe, oof_proba = run_cv_pipeline(pipe, X, y, cv_splits, model_params)
-    return pipe, oof_proba
+    pipe, oof_proba, fold_results = run_cv_pipeline(pipe, X, y, cv_splits, model_params)
+    return pipe, oof_proba, fold_results
+
 
 def run_cv_pipeline(pipeline, X: pd.DataFrame, y: pd.Series, cv_splits=5, model_params=None):
     if model_params is None:
@@ -43,8 +44,11 @@ def run_cv_pipeline(pipeline, X: pd.DataFrame, y: pd.Series, cv_splits=5, model_
         pipe, X, y, cv=cv, method='predict_proba', n_jobs=5
     )[:, 1]
     oof_predictions = pd.DataFrame(oof_proba, index=X.index)
+    fold_predictions = {}
+    for fold, (train_idx, val_idx) in enumerate(cv.split(X, y)):
+        fold_predictions[f'fold_{fold + 1}'] = oof_predictions.iloc[val_idx]
 
     pipe.fit(X, y)
     pipe.fitted_features_ = X.columns.tolist()
 
-    return pipe, oof_predictions
+    return pipe, oof_predictions, fold_predictions
