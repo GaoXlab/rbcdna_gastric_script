@@ -1,0 +1,2 @@
+type,AUC,AUC-ALL,90%.sens-I,90%.sens-II,90%.sens-III,90%.sens,90%.spec,95%.sens-I,95%.sens-II,95%.sens-III,95%.sens,95%.spec,98%.sens-I,98%.sens-II,98%.sens-III,98%.sens,98%.spec
+ind3_ay,0.937709,0.937709,0.889,0.875,0.941,0.904,0.891,0.481,0.5,0.647,0.538,1.0,0.259,0.25,0.353,0.288,1.0

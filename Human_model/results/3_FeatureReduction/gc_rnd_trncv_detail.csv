@@ -1,0 +1,2 @@
+type,AUC,AUC-ALL,top_feature,n_pcas,90%.sens-I,90%.sens-II,90%.sens-III,90%.sens,90%.spec,95%.sens-I,95%.sens-II,95%.sens-III,95%.sens,95%.spec,98%.sens-I,98%.sens-II,98%.sens-III,98%.sens,98%.spec
+TRAIN_CV,0.972389,0.972389,1000,50,0.934,0.939,0.913,0.93,0.905,0.853,0.909,0.87,0.865,0.955,0.765,0.788,0.739,0.763,0.982

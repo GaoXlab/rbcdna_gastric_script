@@ -1,0 +1,2 @@
+type,AUC,AUC-ALL,90%.sens-I,90%.sens-II,90%.sens-III,90%.sens,90%.spec,95%.sens-I,95%.sens-II,95%.sens-III,95%.sens,95%.spec,98%.sens-I,98%.sens-II,98%.sens-III,98%.sens,98%.spec
+test,0.946801,0.946801,0.794,0.875,0.917,0.833,0.909,0.559,0.625,0.583,0.574,1.0,0.324,0.625,0.333,0.37,1.0
