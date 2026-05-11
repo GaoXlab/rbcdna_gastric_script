@@ -9,7 +9,7 @@ export FEATURE_SELECTION_OUTPUT_DIR=$PROJECT_ROOT/results/2_FeatureSelection
 export FEATURE_REDUCTION_OUTPUT_DIR=$PROJECT_ROOT/results/3_FeatureReduction
 export FEATURE_CLASSIFICATION_DIR=$PROJECT_ROOT/results/4_Classification
 export MODEL_DATA_DIR=$PROJECT_ROOT/modelData
-export BAM_FILE_DIR=$PROJECT_ROOT/bams
+export BAM_FILE_DIR=$PROJECT_ROOT/bams/gc_corrected
 
 mkdir -p $FEATURE_SELECTION_OUTPUT_DIR \
          $FEATURE_REDUCTION_OUTPUT_DIR \
