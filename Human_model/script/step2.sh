@@ -37,7 +37,7 @@ message "Merge feature scores finished"
 $SCRIPT_DIR/bed_select all.$TYPE.bed all.$TYPE.bed.out 1000
 
 #rm train.tab*
-#rm all.*.tab.*[0-9]
+rm all.*.tab.*[0-9]
 cat all.$TYPE.bed.out | cut -f1-3 > $FEATURE_SELECTION_OUTPUT_DIR/all.$TYPE.bed.out
 # mv all.$TYPE.bed $FEATURE_SELECTION_OUTPUT_DIR
 
