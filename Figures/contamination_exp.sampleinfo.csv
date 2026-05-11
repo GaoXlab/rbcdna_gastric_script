@@ -1,0 +1,21 @@
+Sample	SampleType
+GLGHD1001	gDNA (rbcDNA + 200pg gDNA)
+GLGHD1002	gDNA (rbcDNA + 200pg gDNA), technical replicate
+GLGHD1003	gDNA (rbcDNA + 200pg gDNA)
+GLGHD1004	gDNA (rbcDNA + 200pg gDNA), technical replicate
+GLMHD1001	rbcDNA + 0pg gDNA
+GLMHD1006	rbcDNA + 6pg gDNA
+GLMHD1007	rbcDNA + 12pg gDNA
+GLMHD1008	rbcDNA + 18pg gDNA
+GLMHD1016	rbcDNA + 0pg gDNA, technical replicate
+GLMHD1021	rbcDNA + 6pg gDNA, technical replicate
+GLMHD1022	rbcDNA + 12pg gDNA, technical replicate
+GLMHD1023	rbcDNA + 18pg gDNA, technical replicate
+GLMHD1031	rbcDNA + 0pg gDNA
+GLMHD1036	rbcDNA + 6pg gDNA
+GLMHD1037	rbcDNA + 12pg gDNA
+GLMHD1038	rbcDNA + 18pg gDNA
+GLMHD1046	rbcDNA + 0pg gDNA, technical replicate
+GLMHD1051	rbcDNA + 6pg gDNA, technical replicate
+GLMHD1052	rbcDNA + 12pg gDNA, technical replicate
+GLMHD1053	rbcDNA + 18pg gDNA, technical replicate

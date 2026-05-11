@@ -21,7 +21,8 @@ Rscript figure_scripts/Build_Features_Data.R "$(pwd)"
 # Build chromatin states annotation data
 ## Download anno data from official web site
 figure_scripts/FeatureAnno/download_anno.sh "$(pwd)"
-python figure_scripts/FeatureAnno/chrom_full_stack_batch.py figure_scripts/FeatureAnno/refData figure_scripts/FeatureAnno figure_scripts/FeatureAnno/*.bed
+cp Human_model/results/2_FeatureSelection/all.gc.bed.out figure_scripts/FeatureAnno/gc.bed
+python figure_scripts/FeatureAnno/chrom_full_stack_batch.py figure_scripts/FeatureAnno/refData figure_scripts/FeatureAnno figure_scripts/FeatureAnno/gc.bed
 
 # Build quality control data
 cd Human_Model ||  exit 1

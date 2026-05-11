@@ -1,0 +1,13 @@
+.idea/
+.DS_Store
+.RData
+__pycache__
+.AppleDouble
+.LSOverride
+*.swp
+*~
+*.bak
+*.tmp
+*.swo
+._*
+.Spotlight-V100figure_scripts/FeatureAnno/total_1000w.bed
