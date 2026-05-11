@@ -33,6 +33,12 @@ For human rbcDNA WGS samples, an additional preprocessing step is required to ge
 
 - **./Human_model/**: Contains the scripts and processes for constructing classification models to detect gastric cancer (GC) patients based on tumor-associated rbcDNA regions. Detailed execution steps and analysis procedures are provided within the corresponding subdirectories.  
 
+## 4. Comments for figure generation
+Note: Run this script from the parent directory of the working directory. It will automatically generate all figures and table data used in the manuscript. This step requires a server with at least 48 CPU cores and 96 GB RAM. The file Supplementary_Tables.xlsx must be placed in the Figures directory.
+```bash
+./Human_Model/script/step4.sh `pwd`
+```
+
 ## Software version and hardware requirements
 
 - bwa-mem2@2.2.1
