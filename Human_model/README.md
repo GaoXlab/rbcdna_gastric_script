@@ -52,17 +52,17 @@ python ./script/step3_test.py gc `pwd` ind3_ay
 Feature selection results will be saved in the 2_FeatureSelection directory, feature reduction results will be saved in the 3_FeatureReduction directory, and classification results will be saved in the 4_Classification directory.
 
 
-# 3. Prediction for additional cancer types and post-operative GC patients
+# 3. Prediction for additional cancer types and blood sample storage duration experiments
 ```bash
 ## for additional cancer types 
 ./script/build_feature_data.sh modelData/"$TYPE".otherca.ids.txt  "$TYPE"
 ./script/make_all_tab.sh "$TYPE" "$TYPE/all.$TYPE.tab"
 python ./script/step3_test.py gc `pwd` otherca
 
-## for post-operative GC patients
-./script/build_feature_data.sh modelData/"$TYPE".postoperative.ids.txt  "$TYPE"
+## for blood sample storage duration experiments
+./script/build_feature_data.sh modelData/"$TYPE".storagetime.ids.txt  "$TYPE"
 ./script/make_all_tab.sh "$TYPE" "$TYPE/all.$TYPE.tab"
-python ./script/step3_test.py gc `pwd` postoperative
+python ./script/step3_test.py gc `pwd` storagetime
 ``` 
 
 # 4. Permutation test
@@ -80,6 +80,10 @@ python ./script/step3_rnd.py gc_rnd `pwd`
 python ./script/step3_test_rnd.py gc_rnd `pwd` test
 ```
 
+# 5. Nested cross-validation evaluation (In response to reviewer comments)
+```bash
+./script/run_full_cv_test.sh gc
+```
 
 
 

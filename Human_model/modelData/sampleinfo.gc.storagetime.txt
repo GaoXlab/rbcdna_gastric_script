@@ -1,0 +1,17 @@
+Sample	Target	Type	Stage	age	sex
+ELR1_2	0	Healthy Donor	/	30	Female
+ELR1_3	0	Healthy Donor	/	30	Female
+ELR1_4	0	Healthy Donor	/	30	Female
+ELR1_5	0	Healthy Donor	/	30	Female
+ELR1_6	0	Healthy Donor	/	30	Female
+ELR1_7	0	Healthy Donor	/	30	Female
+ELR1_8	0	Healthy Donor	/	30	Female
+ELR1_9	0	Healthy Donor	/	30	Female
+ELR2_3	1	Gastric Cancer	I	50	Female
+ELR2_4	1	Gastric Cancer	I	50	Female
+ELR2_5	1	Gastric Cancer	I	50	Female
+ELR2_6	1	Gastric Cancer	I	50	Female
+ELR2_7	1	Gastric Cancer	I	50	Female
+ELR2_8	1	Gastric Cancer	I	50	Female
+ELR2_9	1	Gastric Cancer	I	50	Female
+ELR2_10	1	Gastric Cancer	I	50	Female

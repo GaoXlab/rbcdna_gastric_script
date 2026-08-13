@@ -1,4 +1,3 @@
-.libPaths('/home/gaoxiaofeiLab/yaoxingyun/RLib/3.6/')
 library("QDNAseq")
 
 args <- commandArgs(trailingOnly=TRUE)
