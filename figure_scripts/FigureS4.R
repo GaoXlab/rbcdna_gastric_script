@@ -32,6 +32,7 @@ cutoff_spe90 = Cutoff(0.90, GC_trncv_pred)
 
 # Figure S4A: 特征选择与 AUC (Top n features vs AUC)
 auc = read.table('./Human_model/results/3_FeatureReduction/gc_trncv_detail.csv', sep = ',', head = TRUE)
+auc = auc[auc$top_feature!=10, ]
 auc = unique(auc[(auc$n_pcas <= 60) & (auc$top_feature <= 1000), 1:5])
 colnames(auc) = c("type", "auc2", "auc", "topn", "n_pca")
 auc$topn = factor(auc$topn)

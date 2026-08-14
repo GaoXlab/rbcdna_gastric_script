@@ -85,5 +85,12 @@ python ./script/step3_test_rnd.py gc_rnd `pwd` test
 ./script/run_full_cv_test.sh gc
 ```
 
-
-
+# 6. Performance evaluation of simplified models using selected original rbcDNA regions
+(1) Feature reduction based on discriminatory score ranking
+```bash
+python script/step3_top_origin_feature.py gc `pwd`
+```
+(2) Feature reduction based on PCA-derived contribution ranking
+```bash
+python ./script/step3_ori_topn_feature.py gc `pwd`
+```
