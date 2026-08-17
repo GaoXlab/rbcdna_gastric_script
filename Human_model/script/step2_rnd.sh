@@ -56,4 +56,4 @@ message "Start building new mode"
 "$SCRIPT_DIR"/build_feature_data.sh "$MODEL_DATA_DIR"/gc.all.ids.txt "$TYPE"
 python "$SCRIPT_DIR"/check_mode.py $TYPE
 
-$SCRIPT_DIR/make_all_tab.sh "$TYPE" "$TYPE/all.$TYPE.tab"
+$SCRIPT_DIR/make_all_tab.sh "$TYPE" "all.$TYPE.tab"
