@@ -1,10 +1,9 @@
 import argparse
 import os
-from datetime import datetime
-
 import pandas as pd
-from sklearn.model_selection import train_test_split
 
+from datetime import datetime
+from sklearn.model_selection import train_test_split
 from hy.data_loader import load_sample_info, load_separate_cohorts
 from hy.message import message_to_sns
 
@@ -22,34 +21,15 @@ def get_location(location):
         return os.path.join(args.working_dir, "results")
 
 def main(args):
-    # p100 to p80 and p20
+    # The p100 -> p80/p20 split was moved to split_5_fold_full_cv.py, so here
+    # we only consume the already-generated trn (p80) ids.
     sample_info = load_sample_info(get_location("MODEL_DATA"), 'gc')
-    p80_ids_path = os.path.join(get_location("MODEL_DATA") + f"/{args.exp_name}.trn.ids.txt")
-    p80_neg_path = os.path.join(get_location("MODEL_DATA") + f"/{args.exp_name}.neg.ids.txt")
-
-    if file.exists(p80_ids_path):
-        # This is for new added full_cv part
-        p80 = load_separate_cohorts(get_location('MODEL_DATA'), args.exp_name, 'trn')
-        p20 = load_separate_cohorts(get_location('MODEL_DATA'), args.exp_name, 'test')
-    else:
-        seed = 1234
-        # always generate p80_ids_path
-        print(f"generating {args.exp_name}.ids.txt")
-        p100 = load_separate_cohorts(get_location("MODEL_DATA"), args.exp_name, "p100")
-        if p100.index.duplicated().any():
-            message_to_sns(f"{args.exp_name}以下样本ID重复，可能存在配置问题，请检查！\n{p100.index[p100.index.duplicated()]}")
-            exit(1)
-
-        p80, p20, y_p80, y_p20 = train_test_split(sample_info.loc[p100.index],
-                     sample_info.loc[p100.index]['target'],
-                     test_size=0.2,
-                     stratify=sample_info.loc[p100.index]['stage'],
-                     random_state=seed)
-        p80.to_csv(p80_ids_path, sep=',', index=True, header=False, columns=[])
-
-        p80_hd = p80[p80['target'] == 0]
-        p80_hd.to_csv(p80_neg_path, sep=',', index=True, header=False, columns=[])
-        p20.to_csv(get_location("MODEL_DATA") + f"/{args.exp_name}.test.ids.txt", sep=',', index=True, header=False, columns=[])
+    seed = 1234
+    p80 = load_separate_cohorts(get_location('MODEL_DATA'), args.exp_name, 'trn')
+    if p80 is None:
+        print(f"{args.exp_name}.trn.ids.txt 不存在，请先运行 "
+              f"script/split_5_fold_full_cv.py {args.exp_name} 生成 p80/p20 与 5 折划分。")
+        exit(1)
     for i in range(1, 51):
         p64, _, _, _ = train_test_split(sample_info.loc[p80.index],
                                   sample_info.loc[p80.index]['target'],

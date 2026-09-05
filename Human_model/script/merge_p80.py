@@ -4,11 +4,20 @@ import dask.dataframe as dd
 import dask
 import multiprocessing
 
+
 def process_files(file_type, n_workers=16):
     # 获取所有匹配的文件
     files = glob.glob(f"all.{file_type}.tab.*[0-9]")
+    if not files:
+        print(f"未找到 all.{file_type}.tab.*[0-9] 分片文件，终止")
+        sys.exit(1)
     print(files)
-    df_list = [dd.read_csv(file, header=None, sep='\t', blocksize=None) for file in files]
+    # 分片文件第 0 列可能是 1-22 或 X/Y/M，必须统一按字符串读取，
+    # 否则部分分片被推断为 int64 而部分为 object 时 dask 合并会报 dtype 冲突。
+    df_list = [
+        dd.read_csv(file, header=None, sep='\t', blocksize=None, dtype={0: 'object'})
+        for file in files
+    ]
     new_df = df_list[0][[0, 1, 2]].copy()
     selected_dfs = [df.iloc[:, 3:7] for df in df_list]  # 注意Python切片是左闭右开区间
     merged_df = dd.concat(selected_dfs, axis=1)
@@ -22,6 +31,7 @@ def process_files(file_type, n_workers=16):
         index=False,
         single_file=True,
     )
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
