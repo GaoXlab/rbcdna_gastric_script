@@ -1,0 +1,4 @@
+type,AUC,AUC-ALL,top_feature,npcs,p100_file,90%.sens-I,90%.sens-II,90%.sens-III,90%.sens,90%.spec,95%.sens-I,95%.sens-II,95%.sens-III,95%.sens,95%.spec,98%.sens-I,98%.sens-II,98%.sens-III,98%.sens,98%.spec
+voting,0.490888,0.490888,fold1=900;fold2=900;fold3=1000;fold4=900;fold5=1000,fold1=60;fold2=50;fold3=50;fold4=60;fold5=50,FULL_CV_NESTED_INNER_CV,0.125,0.152,0.109,0.126,0.905,0.066,0.121,0.087,0.079,0.955,0.059,0.03,0.022,0.047,0.982
+lr,0.495011,0.495011,fold1=900;fold2=900;fold3=1000;fold4=900;fold5=1000,fold1=60;fold2=50;fold3=50;fold4=60;fold5=50,FULL_CV_NESTED_INNER_CV,0.162,0.273,0.196,0.186,0.8,0.132,0.182,0.13,0.14,0.873,0.11,0.182,0.13,0.126,0.886
+cb,0.49389,0.49389,fold1=900;fold2=900;fold3=1000;fold4=900;fold5=1000,fold1=60;fold2=50;fold3=50;fold4=60;fold5=50,FULL_CV_NESTED_INNER_CV,0.147,0.152,0.109,0.14,0.891,0.11,0.091,0.043,0.093,0.945,0.066,0.091,0.043,0.065,0.968
